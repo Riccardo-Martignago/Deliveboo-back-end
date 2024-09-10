@@ -24,13 +24,13 @@
                     <ul class="navbar-nav me-auto">
                         @auth
                             <li class="nav-item">
-                                <a href="{{ route('admin.user.show', Auth::user()->id) }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Restourant</a>
+                                <a href="{{ route('admin.user.show', Auth::user()->id) }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Restaurant</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('/create') }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Create New Restourant</a>
+                                <a href="{{ url('/create') }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Create New Restaurant</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ url('admin/dishes') }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dish</a>
+                                <a href="{{ url('admin/dishes') }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dishes</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('admin/dishes/create') }}" class="text-dark bg-white text-decoration-none mx-3 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Create New Dish</a>
