@@ -12,7 +12,7 @@ class HomeController extends Controller{
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email|max:255',
         'password' => 'required|string|min:8',
-        'photo' => 'required|string|max:2048',
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'piva' => 'required|numeric|digits:11|unique:users,piva',
         // 'alimentazione' => 'required|string|max:255',
         'adress' => 'required|string|max:255',
@@ -33,8 +33,9 @@ class HomeController extends Controller{
         'password.min' => "La password deve contenere almeno 8 caratteri.",
 
         'photo.required' => "Il campo foto è obbligatorio.",
-        'photo.string' => "Il file deve essere una stringa.",
-        'photo.max' => "L'immagine non può superare i 2048 caratteri.",
+        'photo.string' => "Il file caricato deve essere un'immagine.",
+        'photo.mimes' => "L'immagine deve essere in formato: jpeg, png, jpg, gif.",
+        'photo.max' => "L'immagine non può superare i 2048 KB.",
 
         'piva.required' => "Il campo Partita IVA è obbligatorio.",
         'piva.numeric' => "La Partita IVA deve essere un numero.",
@@ -75,10 +76,16 @@ class HomeController extends Controller{
         $newUser->name = $data['name'];
         $newUser->email = $data['email'];
         $newUser->password = $data['password'];
-        $newUser->photo = $data['photo'];
         $newUser->piva = $data['piva'];
         // $newUser->alimentazione = $data['alimentazione'];
         $newUser->adress = $data['adress'];
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $fileName);
+            $newUser->photo = $fileName;
+        }
 
         $newUser->save();
 

@@ -17,11 +17,12 @@
             </div>
             @endif
             <div class="col-6 px-3">
-                <form action="{{ route ('pages.store') }}" method="POST">
+                <form action="{{ route ('pages.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name">Nome</label>
                         <input class="form-control form-control-sm mb-2" type="text" placeholder="Inserisci il nome" aria-label="Nome" id="name" name="name" value="{{ old('name') }}" required>
+
                     </div>
 
                     <div class="mb-3">
@@ -36,7 +37,7 @@
 
                     <div class="mb-3">
                         <label for="Photo">Photo</label>
-                        <input class="form-control form-control-sm mb-2" type="text" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
+                        <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
                     </div>
 
                     <div class="mb-3">

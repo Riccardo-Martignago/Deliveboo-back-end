@@ -8,7 +8,7 @@ Showing {{ $user->name }}
     <div class="card m-4" style="width: 40rem;">
         <h3 class="card-header">{{ $user->name}}</h3>
         <div class="m-3">
-            <img src="{{ $user->photo }}" class="card-img" alt="{{ $user->name}}">
+            <img src="{{ asset('uploads/' . $user->photo) }}" class="card-img" alt="{{ $user->name}}">
         </div>
         <div class="card-body">
             <br>
