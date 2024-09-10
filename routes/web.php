@@ -39,20 +39,14 @@ Route::middleware('auth')->name('admin.')->prefix('admin/')->group(function(){
     Route::resource('show', OrderController::class);
 
     Route::resource('dishes', DishController::class);
-<<<<<<< HEAD
-    Route::resource('show', DishController::class);
-    Route::resource('create', DishController::class);
-=======
     Route::resource('/show', DishController::class);
     Route::resource('/create', DishController::class);
     Route::resource('typologies', TypologyController::class);
->>>>>>> 8a1c417ca91696cd6d752626cce2bd77685f5c00
 
     // Route::resource('/show',AdminHomeController::class);
 
     }
 );
-
 
 
 Auth::routes();

@@ -6,7 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ( $errors->all() as  $error)
+                                <li>
+                                    {{ $error }}
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -58,6 +68,30 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="piva" class="col-md-4 col-form-label text-md-end">{{ __('Piva') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="piva" type="number" class="form-control" name="piva" required autocomplete="piva">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('Photo') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="photo" type="text" class="form-control" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="adress" class="col-md-4 col-form-label text-md-end">{{ __('Adress') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="adress" type="text" class="form-control" name="adress" value="{{ old('adress') }}" required autocomplete="adress" autofocus>
                             </div>
                         </div>
 
