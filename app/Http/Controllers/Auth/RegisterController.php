@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Typology;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,7 +35,10 @@ class RegisterController extends Controller
             'photo' => ['required', 'string', 'max:2048'],
             'piva' => ['required', 'numeric', 'digits:11', 'unique:users'],
             'adress' => ['required', 'string', 'max:255'],
-        ], [
+            'typology_id' => 'required|array',
+            'typology_id.*' => 'exists:typologies,id',
+        ],
+        [
             'photo.required' => "Il campo foto è obbligatorio.",
             'photo.string' => "Il file deve essere una stringa.",
             'photo.max' => "L'immagine non può superare i 2048 caratteri.",
@@ -49,7 +53,10 @@ class RegisterController extends Controller
             'adress.max' => "L'indirizzo non può superare i 255 caratteri.",
         ]);
     }
-
+    public function showRegistrationForm(){
+        $typologies = Typology::all();
+        return view('auth.register', compact('typologies'));
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -62,7 +69,7 @@ class RegisterController extends Controller
         $this->validator($data)->validate();
 
         // Creazione dell'utente
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -70,5 +77,9 @@ class RegisterController extends Controller
             'piva' => $data['piva'],
             'adress' => $data['adress'],
         ]);
+
+        $user->typologies()->sync($data['typology_id']);
+
+        return $user;
     }
 }

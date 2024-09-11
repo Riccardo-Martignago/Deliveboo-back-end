@@ -94,6 +94,23 @@
                                 <input id="adress" type="text" class="form-control" name="adress" value="{{ old('adress') }}" required autocomplete="adress" autofocus>
                             </div>
                         </div>
+                        <div required>
+                            @foreach($typologies as $typology)
+                                <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="typology_id[]"
+                                            value="{{ $typology->id }}"
+                                            id="typology_{{ $typology->id }}"
+                                            @if(in_array($typology->id, old('typology_id', []))) checked @endif>
+                                        <label class="form-check-label" for="typology_{{ $typology->id }}">
+                                            {{ $typology->name }}
+                                        </label>
+                                </div>
+                            @endforeach
+                        </div>
+
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
