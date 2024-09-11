@@ -6,6 +6,7 @@
     @foreach ($dishes as $dish )
         <div class="card d-flex mb-4" style="width: 18rem; ">
             <img class="rounded-2 w-100 align-self-center" src="{{ asset('uploads/' . $dish->photo) }}" alt="{{ $dish->name }}">
+
                 <div class="card-body">
                 <h5 class="card-title">{{ $dish->name }}</h5>
                 <p class="card-text"><p>{{ $dish->description }}</p></p>

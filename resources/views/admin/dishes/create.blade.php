@@ -11,8 +11,10 @@
             </div>
 
             <div class="form-group">
+
                 <label for="Photo">Photo</label>
                 <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
+
             </div>
 
             <div class="form-group">
@@ -32,14 +34,10 @@
                     <option value="0" {{ old('visible') == 0 ? 'selected' : '' }}>No</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="user_id">User</label>
-                <select name="user_id" id="user_id" class="form-control" required>
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}" {{ old('user_id') == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+
+
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
             <button type="submit" class="btn btn-success mt-3">Create Dish</button>
         </form>
     </div>

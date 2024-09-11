@@ -5,6 +5,7 @@
         <h1 class="text-align-center">Edit Dish</h1>
     </div>
     <div class="col-6">
+
         <form action="{{ route('admin.dishes.update', $dish->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -14,6 +15,7 @@
             </div>
 
             <div class="form-group">
+
                 <label for="Photo">Photo</label>
                 <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
             </div>
@@ -37,6 +39,7 @@
             </div>
 
             <button type="submit" class="btn btn-success mt-3">Update Dish</button>
+
         </form>
     </div>
 </div>
