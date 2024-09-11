@@ -15,7 +15,7 @@ class DishSeeder extends Seeder
     public function run(): void
     {
          // Assicurati che ci sia almeno un utente nel database
-         $userIds = User::pluck('id')->toArray();
+        $userIds = User::pluck('id')->toArray();
 
         // creo un'array associativo che contiene esplicitamente le chiavi del database
 
