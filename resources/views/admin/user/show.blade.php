@@ -15,8 +15,6 @@ Showing {{ $user->name }}
             <h5 class="card-title ">Address: {{ $user->adress }}</h5>
             Company Code: {{ $user->piva }} <br>
             <p class="card-text"> Email: {{ $user->email }}</p>
-            <a href="{{ route('pages.index', $user) }}" class="btn btn-primary">Return  to home</a>
-            <a href="{{ route('admin.orders.index', $order) }}" class="btn btn-primary">Order</a>
         </div>
     </div>
 </section>
