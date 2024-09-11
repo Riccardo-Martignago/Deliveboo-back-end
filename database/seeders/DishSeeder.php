@@ -15,13 +15,13 @@ class DishSeeder extends Seeder
     public function run(): void
     {
          // Assicurati che ci sia almeno un utente nel database
-            $user = User::first();
+         $userIds = User::pluck('id')->toArray();
 
         // creo un'array associativo che contiene esplicitamente le chiavi del database
 
         $dishes = [
             [
-                'user_id' => $user->id,
+                'user_id' =>$userIds[0],
                 'name' => 'Spaghetti Carbonara',
                 'photo' => 'spaghetti_alla_carbonara.jpg',
                 'description' => 'Classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.',
@@ -29,7 +29,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' =>  $userIds[1],
                 'name' => 'Margherita Pizza',
                 'photo' => 'pizza.jpg',
                 'description' => 'Traditional Italian pizza with tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil.',
@@ -37,7 +37,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[2],
                 'name' => 'Caesar Salad',
                 'photo' => 'caesar salad.jpg',
                 'description' => 'Crispy romaine lettuce with Caesar dressing, croutons, and Parmesan cheese.',
@@ -45,7 +45,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' =>  $userIds[3],
                 'name' => 'Beef Tacos',
                 'photo' => 'beef tacos.jpg',
                 'description' => 'Tasty beef tacos with fresh salsa, lettuce, and cheese.',
@@ -53,7 +53,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[4],
                 'name' => 'Grilled Salmon',
                 'photo' => 'grilled salmon.jpg',
                 'description' => 'Grilled salmon fillet served with lemon butter sauce and vegetables.',
@@ -61,7 +61,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[0],
                 'name' => 'Chicken Parmesan',
                 'photo' => 'chicken parmesan.jpg',
                 'description' => 'Breaded chicken breast topped with marinara sauce and melted cheese.',
@@ -69,7 +69,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[1],
                 'name' => 'Sushi Platter',
                 'photo' => 'sushi platter.jpg',
                 'description' => 'Assorted sushi rolls with fresh fish, rice, and seaweed.',
@@ -77,7 +77,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' =>  $userIds[2],
                 'name' => 'Ramen Noodles',
                 'photo' => 'ramen noodles.jpg',
                 'description' => 'Japanese ramen noodles in a savory broth with pork, egg, and vegetables.',
@@ -85,7 +85,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[3],
                 'name' => 'Vegetable Stir Fry',
                 'photo' => 'Vegetable Stir Fry.jpg',
                 'description' => 'Fresh vegetables stir-fried with tofu in a savory sauce.',
@@ -93,7 +93,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' =>  $userIds[4],
                 'name' => 'Cheeseburger',
                 'photo' => 'Cheeseburger.jpg',
                 'description' => 'Juicy beef burger with cheddar cheese, lettuce, tomato, and pickles.',
@@ -101,7 +101,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[0],
                 'name' => 'Pad Thai',
                 'photo' => 'Pad Thai.jpg',
                 'description' => 'Traditional Thai noodles stir-fried with shrimp, peanuts, and bean sprouts.',
@@ -109,7 +109,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[2],
                 'name' => 'Chicken Tikka Masala',
                 'photo' => 'Chicken Tikka Masala.jpg',
                 'description' => 'Grilled chicken cooked in a creamy tomato sauce with Indian spices.',
@@ -117,7 +117,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[1],
                 'name' => 'Seafood Paella',
                 'photo' => 'Seafood Paella.jpg',
                 'description' => 'Spanish rice dish cooked with seafood, saffron, and vegetables.',
@@ -125,7 +125,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[3],
                 'name' => 'Lamb Gyro',
                 'photo' => 'Lamb Gyro.jpg',
                 'description' => 'Grilled lamb served in pita bread with tzatziki sauce, tomatoes, and onions.',
@@ -133,7 +133,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[4],
                 'name' => 'BBQ Ribs',
                 'photo' => 'BBQ Ribs.jpg',
                 'description' => 'Tender pork ribs slathered in barbecue sauce, served with coleslaw and fries.',
@@ -141,7 +141,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[8],
                 'name' => 'Falafel Wrap',
                 'photo' => 'Falafel Wrap.jpg',
                 'description' => 'Crispy falafel balls wrapped in pita bread with hummus, lettuce, and tomatoes.',
@@ -149,7 +149,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' =>$userIds[7],
                 'name' => 'Peking Duck',
                 'photo' => 'Peking Duck.jpg',
                 'description' => 'Roasted duck served with pancakes, cucumber, and hoisin sauce.',
@@ -157,7 +157,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[6],
                 'name' => 'Shrimp Scampi',
                 'photo' => 'Shrimp Scampi.jpg',
                 'description' => 'Shrimp cooked in garlic butter sauce, served over linguine pasta.',
@@ -165,7 +165,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[1],
                 'name' => 'Steak Frites',
                 'photo' => 'Steak Frites.jpg',
                 'description' => 'Grilled steak served with crispy French fries and herb butter.',
@@ -173,7 +173,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $user->id,
+                'user_id' => $userIds[3],
                 'name' => 'Margarita',
                 'photo' => 'Margarita.jpg',
                 'description' => 'Classic cocktail made with tequila, lime juice, and triple sec.',
