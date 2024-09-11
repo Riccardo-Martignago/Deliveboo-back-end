@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header fw-bold">{{ __('Registrati su Deliveboo!') }}</div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -22,10 +22,10 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-3 col-form-label fw-bold">{{ __('Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <div class="col-md-8">
+                                <input id="name" type="text" class="form-control  border border-dark @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -36,10 +36,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-3 col-form-label fw-bold">{{ __('Email Address') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <div class="col-md-8">
+                                <input id="email" type="email" class="form-control  border border-dark @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -50,10 +50,10 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-3 col-form-label fw-bold">{{ __('Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <div class="col-md-8">
+                                <input id="password" type="password" class="form-control  border border-dark @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -64,56 +64,64 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-3 col-form-label fw-bold">{{ __('Confirm Password') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="col-md-8">
+                                <input id="password-confirm" type="password" class="form-control  border border-dark" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="piva" class="col-md-4 col-form-label text-md-end">{{ __('Piva') }}</label>
+                            <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('Piva') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="piva" type="number" class="form-control" name="piva" required autocomplete="piva">
+                            <div class="col-md-8">
+                                <input id="piva" type="number" class="form-control  border border-dark" name="piva" required autocomplete="piva">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="photo" class="col-md-4 col-form-label text-md-end">{{ __('Photo') }}</label>
+                            <label for="photo" class="col-md-3 col-form-label fw-bold">{{ __('Photo') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="photo" type="file" accept="image/*" class="form-control" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus>
+                            <div class="col-md-8">
+                                <input id="photo" type="file" accept="image/*" class="form-control  border border-dark" name="photo" value="{{ old('photo') }}" required autocomplete="photo" autofocus>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label for="adress" class="col-md-4 col-form-label text-md-end">{{ __('Adress') }}</label>
+                            <label for="adress" class="col-md-3 col-form-label fw-bold">{{ __('Adress') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="adress" type="text" class="form-control" name="adress" value="{{ old('adress') }}" required autocomplete="adress" autofocus>
+                            <div class="col-md-8">
+                                <input id="adress" type="text" class="form-control  border border-dark" name="adress" value="{{ old('adress') }}" required autocomplete="adress" autofocus>
                             </div>
                         </div>
-                        <div required>
-                            @foreach($typologies as $typology)
-                                <div class="form-check">
+
+                        <div class="row mb-3 d-flex">
+                            <label for="typology" class="form-check-label w-25 fw-bold">
+                                Tipologie
+                            </label>
+                            <div required class="d-flex wrap justify-content-start flex-wrap w-75">
+                                @foreach($typologies as $typology)
+                                    <div class="form-check col-2 me-3">
                                         <input
-                                            class="form-check-input"
+                                            class="form-check-input border border-dark"
                                             type="checkbox"
                                             name="typology_id[]"
                                             value="{{ $typology->id }}"
                                             id="typology_{{ $typology->id }}"
                                             @if(in_array($typology->id, old('typology_id', []))) checked @endif>
-                                        <label class="form-check-label" for="typology_{{ $typology->id }}">
+                                        <label class="form-check-label " for="typology_{{ $typology->id }}">
                                             {{ $typology->name }}
                                         </label>
-                                </div>
-                            @endforeach
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
 
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
+
+
+                        <div class="row mb-0 w-100 justify-content-end">
+                            <div class="col-md-2">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
