@@ -12,11 +12,9 @@ Showing {{ $user->name }}
         </div>
         <div class="card-body">
             <br>
-            <h5 class="card-title ">Indirizzo: {{ $user->adress }}</h5>
-            P.Iva: {{ $user->piva }} <br>
-            <p class="card-text"> Mail: {{ $user->email }}</p>
-            <a href="{{ route('pages.index', $user) }}" class="btn btn-primary">Retourn  to home</a>
-            <a href="{{ route('admin.orders.index', $order) }}" class="btn btn-primary">Order</a>
+            <h5 class="card-title ">Address: {{ $user->adress }}</h5>
+            Company Code: {{ $user->piva }} <br>
+            <p class="card-text"> Email: {{ $user->email }}</p>
         </div>
     </div>
 </section>
