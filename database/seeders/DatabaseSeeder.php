@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $userNames = [
             [
-                'username' => 'ristorante  la  piazza',
+                'name' => 'ristorante  la  piazza',
                 'email' => 'lapiazza@restaurant.com',
                 'password' => 'lapiazza123!',
                 'piva' => '12345678901',
@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'ristorante_la_piazza.jpg',
             ],
             [
-                'username' => 'bistro  del  mare',
+                'name' => 'bistro  del  mare',
                 'email' => 'bistrodelmare@restaurant.com',
                 'password' => 'bistro456!',
                 'piva' => '23456789012',
@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'bistrot_del_mare.jpg',
             ],
             [
-                'username' => 'osteria  vecchia',
+                'name' => 'osteria  vecchia',
                 'email' => 'osteriavecchia@restaurant.com',
                 'password' => 'osteria890!',
                 'piva' => '34567890123',
@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'osteria_vecchia.jpg',
             ],
             [
-                'username' => 'trattoria  al  ponte',
+                'name' => 'trattoria  al  ponte',
                 'email' => 'trattoriaalponte@restaurant.com',
                 'password' => 'trattoria123@',
                 'piva' => '45678901234',
@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'trattoria_al_ponte.jpg',
             ],
             [
-                'username' => 'gusto  ristorante',
+                'name' => 'gusto  ristorante',
                 'email' => 'gusto@restaurant.com',
                 'password' => 'gusto567!',
                 'piva' => '56789012345',
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'gusto  ristorante.jpg',
             ],
             [
-                'username' => 'ristorante  mediterraneo',
+                'name' => 'ristorante  mediterraneo',
                 'email' => 'mediterraneo@restaurant.com',
                 'password' => 'mediterraneo789!',
                 'piva' => '67890123456',
@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'ristorante  mediterraneo.jpg',
             ],
             [
-                'username' => 'enoteca  vinum',
+                'name' => 'enoteca  vinum',
                 'email' => 'vinum@enoteca.com',
                 'password' => 'vinum890@',
                 'piva' => '78901234567',
@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'enoteca  vinum.jpg',
             ],
             [
-                'username' => 'sushi  zen',
+                'name' => 'sushi  zen',
                 'email' => 'zen@sushi.com',
                 'password' => 'zen789@',
                 'piva' => '01234567890',
@@ -81,7 +81,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'sushi  zen.jpg',
             ],
             [
-                'username' => 'trattoria  della  nonna',
+                'name' => 'trattoria  della  nonna',
                 'email' => 'dellanonna@trattoria.com',
                 'password' => 'nonna123!',
                 'piva' => '12345678902',
@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'trattoria  della  nonna.jpg',
             ],
             [
-                'username' => 'pasta  italiana',
+                'name' => 'pasta  italiana',
                 'email' => 'pasta@restaurant.com',
                 'password' => 'pasta456!',
                 'piva' => '23456789013',
@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'pasta  italiana.jpg',
             ],
             [
-                'username' => 'ristorante  da  michele',
+                'name' => 'ristorante  da  michele',
                 'email' => 'damichele@restaurant.com',
                 'password' => 'michele890!',
                 'piva' => '34567890124',
@@ -105,7 +105,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'ristorante  da  michele.jpg',
             ],
             [
-                'username' => 'ristorante  fiorentina',
+                'name' => 'ristorante  fiorentina',
                 'email' => 'fiorentina@restaurant.com',
                 'password' => 'fiorentina123@',
                 'piva' => '45678901235',
@@ -113,7 +113,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'ristorante  fiorentina.jpg',
             ],
             [
-                'username' => 'taverna  greca',
+                'name' => 'taverna  greca',
                 'email' => 'taverna@restaurant.com',
                 'password' => 'greca123!',
                 'piva' => '89012345679',
@@ -121,7 +121,7 @@ class DatabaseSeeder extends Seeder
                 'photo' => 'taverna  greca.jpg',
             ],
             [
-                'username' => 'trattoria  del  corso',
+                'name' => 'trattoria  del  corso',
                 'email' => 'delcorso@restaurant.com',
                 'password' => 'delcorso456!',
                 'piva' => '90123456780',
@@ -132,7 +132,14 @@ class DatabaseSeeder extends Seeder
 
 
         foreach($userNames as $userData) {
-            User::create($userData);
+            $users = new User();
+            $users ->name = $userData['name'];
+            $users ->email = $userData['email'];
+            $users ->password = bcrypt($userData['password']);
+            $users ->piva = $userData['piva'];
+            $users ->adress = $userData['adress'];
+            $users ->photo = $userData['photo'];
+            $users->save();
         }
          // Aggiungi qui la chiamata al seeder per i piatti
         $this->call([

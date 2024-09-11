@@ -85,9 +85,29 @@ class DishController extends Controller
     public function update(Request $request, Dish $dish)
     {
         //validazione
-        $data = $request->validate($this->validationRules);
-        $dish->update($data);
-        return redirect()->route('admin.dishes.show', $dish);
+        {
+            //validazione
+            $validated = $request->validate([
+                'name'=>'required|string|max:255',
+                'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'description'=>'required|string',
+                'price'=>'required|numeric',
+                'visible'=>'required|boolean',
+            ]);
+            $dish->update($validated);
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads'), $fileName);
+                $dish->photo = $fileName;
+            }
+            if ($dish->user_id !== auth()->id()) {
+                return redirect()->route('admin.dishes.index')->with('error', 'You are not authorized to update this dish.');
+            }
+            $dish->user_id = auth()->id();
+            $dish->save();
+            return redirect()->route('admin.dishes.show', $dish)->with('success', 'Dish updated!');
+        }
     }
 
     /**
