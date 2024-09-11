@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -55,11 +56,16 @@ class HomeController extends Controller{
     {
         //
         $users = User::all();
+
         return view('admin.user.index',compact('users'));
     }
 
     public function show(User $user ,Order $order)
     {
+                // Verifica se l'utente autenticato è lo stesso che si sta tentando di visualizzare
+                if (Auth::id() !== $user->id) {
+                    abort(403, 'La pagina a cui stai tentando di accedere è inesistente.');
+                }
         return view('admin.user.show', compact('user','order'));
     }
 
