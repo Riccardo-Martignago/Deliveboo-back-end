@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
     <h1 class=" text-center mb-3">Create a New Dish</h1>
     <div class="col-6">
-        <form  action="{{ route('admin.dishes.store') }}" method="POST">
+        <form  action="{{ route('admin.dishes.store') }}" method="POST"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Name</label>
@@ -11,8 +11,8 @@
             </div>
 
             <div class="form-group">
-                <label for="photo">Photo URL</label>
-                <input type="url" name="photo" id="photo" class="form-control" value="{{ old('photo') }}" required>
+                <label for="Photo">Photo</label>
+                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
             </div>
 
             <div class="form-group">
