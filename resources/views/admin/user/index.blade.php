@@ -8,7 +8,7 @@
         @foreach ($users as $user)
         <div class="card m-3" style="width: 18rem;">
             <h3 class="card-header">{{ $user->name}}</h3>
-            <img src="{{ $user->photo }}" class="card-img-top" alt="{{ $user->name}}">
+            <img src="{{ asset('uploads/' . $user->photo) }}" class="card-img-top" alt="{{ $user->name}}">
             <div class="card-body">
                 <br>
                         <h5 class="card-title ">Address: {{ $user->adress }}</h5>
