@@ -23,7 +23,7 @@ class DishSeeder extends Seeder
             [
                 'user_id' => $user->id,
                 'name' => 'Spaghetti Carbonara',
-                'photo' => './public/uploads/spaghetti_alla_carbonara.jpg',
+                'photo' => 'spaghetti_alla_carbonara.jpg',
                 'description' => 'Classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.',
                 'price' => 12.99,
                 'visible' => true,
@@ -95,7 +95,7 @@ class DishSeeder extends Seeder
             [
                 'user_id' => $user->id,
                 'name' => 'Cheeseburger',
-                'photo' => 'Cheesebruger.jpg',
+                'photo' => 'Cheeseburger.jpg',
                 'description' => 'Juicy beef burger with cheddar cheese, lettuce, tomato, and pickles.',
                 'price' => 8.99,
                 'visible' => true,
