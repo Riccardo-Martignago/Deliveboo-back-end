@@ -39,18 +39,18 @@ class RegisterController extends Controller
             'typology_id.*' => 'exists:typologies,id',
         ],
         [
-            'photo.required' => "Il campo foto è obbligatorio.",
-            'photo.string' => "Il file deve essere una stringa.",
-            'photo.max' => "L'immagine non può superare i 2048 caratteri.",
+            'photo.required' => "The photo field is required.",
+            'photo.string' => "The file must be a string.",
+            'photo.max' => "The image cannot exceed 2048 characters.",
 
-            'piva.required' => "Il campo Partita IVA è obbligatorio.",
-            'piva.numeric' => "La Partita IVA deve essere un numero.",
-            'piva.digits' => "La Partita IVA deve essere composta da 11 cifre.",
-            'piva.unique' => "La Partita IVA inserita è già registrata.",
+            'piva.required' => "The VAT number field is required.",
+            'piva.numeric' => "The VAT number must be a number.",
+            'piva.digits' => "The VAT number must be 11 digits.",
+            'piva.unique' => "The VAT number entered is already registered.",
 
-            'adress.required' => "Il campo indirizzo è obbligatorio.",
-            'adress.string' => "L'indirizzo deve essere una stringa.",
-            'adress.max' => "L'indirizzo non può superare i 255 caratteri.",
+            'adress.required' => "The address field is required.",
+            'adress.string' => "The address must be a string.",
+            'adress.max' => "The address cannot exceed 255 characters.",
         ]);
     }
     public function showRegistrationForm(){
