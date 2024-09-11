@@ -132,7 +132,14 @@ class DatabaseSeeder extends Seeder
 
 
         foreach($userNames as $userData) {
-            User::create($userData);
+            $users = new User();
+            $users ->name = $userData['name'];
+            $users ->email = $userData['email'];
+            $users ->password = bcrypt($userData['password']);
+            $users ->piva = $userData['piva'];
+            $users ->adress = $userData['adress'];
+            $users ->photo = $userData['photo'];
+            $users->save();
         }
          // Aggiungi qui la chiamata al seeder per i piatti
         $this->call([
