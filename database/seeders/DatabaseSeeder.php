@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'lapiazza123!',
                 'piva' => '12345678901',
                 'adress' => 'Via Roma 10, 00100 Roma',
-                'photo' => 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38',
+                'photo' => 'ristorante_la_piazza.jpg',
             ],
             [
                 'username' => 'bistro  del  mare',
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'bistro456!',
                 'piva' => '23456789012',
                 'adress' => 'Corso Milano 20, 20100 Milano',
-                'photo' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
+                'photo' => 'bistrot_del_mare.jpg',
             ],
             [
                 'username' => 'osteria  vecchia',
@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'osteria890!',
                 'piva' => '34567890123',
                 'adress' => 'Piazza Napoli 5, 80100 Napoli',
-                'photo' => 'https://images.unsplash.com/photo-1528605248644-14dd04022da1',
+                'photo' => 'osteria_vecchia.jpg',
             ],
             [
                 'username' => 'trattoria  al  ponte',
@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'trattoria123@',
                 'piva' => '45678901234',
                 'adress' => 'Viale Torino 15, 10100 Torino',
-                'photo' => 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0',
+                'photo' => 'trattoria_al_ponte.jpg',
             ],
             [
                 'username' => 'gusto  ristorante',
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'gusto567!',
                 'piva' => '56789012345',
                 'adress' => 'Via Venezia 12, 30100 Venezia',
-                'photo' => 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9',
+                'photo' => 'gusto  ristorante.jpg',
             ],
             [
                 'username' => 'ristorante  mediterraneo',
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'mediterraneo789!',
                 'piva' => '67890123456',
                 'adress' => 'Via Firenze 30, 50100 Firenze',
-                'photo' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
+                'photo' => 'ristorante  mediterraneo.jpg',
             ],
             [
                 'username' => 'enoteca  vinum',
@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'vinum890@',
                 'piva' => '78901234567',
                 'adress' => 'Piazza Duomo 5, 20122 Milano',
-                'photo' => 'https://images.unsplash.com/photo-1520262494112-9fe481d36ec3',
+                'photo' => 'enoteca  vinum.jpg',
             ],
             [
                 'username' => 'sushi  zen',
@@ -78,7 +78,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'zen789@',
                 'piva' => '01234567890',
                 'adress' => 'Via Garibaldi 50, 50122 Firenze',
-                'photo' => 'https://images.unsplash.com/photo-1553621042-f6e147245754',
+                'photo' => 'sushi  zen.jpg',
             ],
             [
                 'username' => 'trattoria  della  nonna',
@@ -86,7 +86,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'nonna123!',
                 'piva' => '12345678902',
                 'adress' => 'Via Roma 5, 00100 Roma',
-                'photo' => 'https://images.unsplash.com/photo-1562059390-a761a084768e',
+                'photo' => 'trattoria  della  nonna.jpg',
             ],
             [
                 'username' => 'pasta  italiana',
@@ -94,7 +94,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'pasta456!',
                 'piva' => '23456789013',
                 'adress' => 'Corso Milano 30, 20100 Milano',
-                'photo' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
+                'photo' => 'pasta  italiana.jpg',
             ],
             [
                 'username' => 'ristorante  da  michele',
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'michele890!',
                 'piva' => '34567890124',
                 'adress' => 'Piazza del Popolo 1, 80100 Napoli',
-                'photo' => 'https://images.unsplash.com/photo-1600891964599-f61ba0e24092',
+                'photo' => 'ristorante  da  michele.jpg',
             ],
             [
                 'username' => 'ristorante  fiorentina',
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'fiorentina123@',
                 'piva' => '45678901235',
                 'adress' => 'Viale Michelangelo 10, 50100 Firenze',
-                'photo' => 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90',
+                'photo' => 'ristorante  fiorentina.jpg',
             ],
             [
                 'username' => 'taverna  greca',
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
                 'password' => 'greca123!',
                 'piva' => '89012345679',
                 'adress' => 'Via Santorini 10, 10100 Torino',
-                'photo' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4',
+                'photo' => 'taverna  greca.jpg',
             ],
             [
                 'username' => 'trattoria  del  corso',
@@ -126,20 +126,13 @@ class DatabaseSeeder extends Seeder
                 'password' => 'delcorso456!',
                 'piva' => '90123456780',
                 'adress' => 'Via del Corso 22, 00100 Roma',
-                'photo' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
+                'photo' => 'trattoria  del  corso.jpg',
             ],
         ];
 
 
         foreach($userNames as $userData) {
-            $users = new User();
-            $users ->name = $userData['username'];
-            $users ->email = $userData['email'];
-            $users ->password = bcrypt($userData['password']);
-            $users ->piva = $userData['piva'];
-            $users ->adress = $userData['adress'];
-            $users ->photo = $userData['photo'];
-            $users->save();
+            User::create($userData);
         }
          // Aggiungi qui la chiamata al seeder per i piatti
         $this->call([
