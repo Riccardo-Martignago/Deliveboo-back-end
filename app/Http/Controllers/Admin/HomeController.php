@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Typology;
@@ -58,9 +57,9 @@ class HomeController extends Controller{
         return view('admin.user.index',compact('users'));
     }
 
-    public function show(User $user ,Order $order)
+    public function show(User $user)
     {
-        return view('admin.user.show', compact('user','order'));
+        return view('admin.user.show', compact('user'));
     }
 
     public function create()
