@@ -4,37 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Typology;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -52,9 +32,31 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'photo' => ['required', 'string', 'max:2048'],
+            'piva' => ['required', 'numeric', 'digits:11', 'unique:users'],
+            'adress' => ['required', 'string', 'max:255'],
+            'typology_id' => 'required|array',
+            'typology_id.*' => 'exists:typologies,id',
+        ],
+        [
+            'photo.required' => "The photo field is required.",
+            'photo.string' => "The file must be a string.",
+            'photo.max' => "The image cannot exceed 2048 characters.",
+
+            'piva.required' => "The VAT number field is required.",
+            'piva.numeric' => "The VAT number must be a number.",
+            'piva.digits' => "The VAT number must be 11 digits.",
+            'piva.unique' => "The VAT number entered is already registered.",
+
+            'adress.required' => "The address field is required.",
+            'adress.string' => "The address must be a string.",
+            'adress.max' => "The address cannot exceed 255 characters.",
         ]);
     }
-
+    public function showRegistrationForm(){
+        $typologies = Typology::all();
+        return view('auth.register', compact('typologies'));
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -63,10 +65,21 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        // Validazione dei dati
+        $this->validator($data)->validate();
+
+        // Creazione dell'utente
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'photo' => $data['photo'],
+            'piva' => $data['piva'],
+            'adress' => $data['adress'],
         ]);
+
+        $user->typologies()->sync($data['typology_id']);
+
+        return $user;
     }
 }
