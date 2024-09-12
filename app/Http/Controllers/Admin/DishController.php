@@ -13,13 +13,23 @@ class DishController extends Controller
         'name'=>'required|string|max:255',
         'photo'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'description'=>'required|string',
-        'price'=>'required|numeric',
+        'price'=>'required|numeric|max:999999',
         'visible'=>'required|boolean',
         'user_id' =>'required|exists:users,id',
     ];
-    /**
-     * Display a listing of the resource.
-     */
+    protected $validationMessages = [
+        'name.required' => 'Il campo nome è obbligatorio.',
+        'name.string' => 'Il nome deve essere una stringa.',
+        'name.max' => 'Il nome non può superare i 255 caratteri.',
+
+        'price.required' => 'Il campo prezzo è obbligatorio.',
+        'price.numeric' => 'Il prezzo deve essere un numero.',
+        'price.max' => 'Il prezzo non può superare i 999999.',
+
+        'photo.required' => 'Il campo foto è obbligatorio.',
+        'photo.image' => 'Il file deve essere un\'immagine.',
+        'photo.max' => 'L\'immagine non può superare i 2MB.',
+    ];
     public function index()
     {
 
