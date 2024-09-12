@@ -9,12 +9,21 @@ use Illuminate\Auth\Events\Validated;
 
 class DishController extends Controller
 {
+    protected $validationRules = [
+        'name'=>'required|string|max:255',
+        'photo'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'description'=>'required|string',
+        'price'=>'required|numeric',
+        'visible'=>'required|boolean',
+        'user_id' =>'required|exists:users,id',
+    ];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $dishes = Dish::all();
+
+        $dishes = Dish::where('user_id', auth()->id())->get();
         return view('admin.dishes.index', compact('dishes'));
     }
 
@@ -23,7 +32,8 @@ class DishController extends Controller
      */
     public function create()
     {
-        return view ( 'admin.dishes.create');
+        $users = \App\Models\User::all();
+        return view ( 'admin.dishes.create', compact('users'));
     }
 
     /**
@@ -32,16 +42,25 @@ class DishController extends Controller
     public function store(Request $request)
     {
         //valida i dati
-        $validated = $request->validate([
-            'name'=>'required|string|max:255',
-            'photo'=>'required|url',
-            'description'=>'required|string',
-            'price'=>'required|numeric',
-            'visible'=>'required|boolean',
-        ]);
+        $data = $request->validate($this->validationRules);
         //crea il nuovo piatto
-        Dish::create($validated);
-        return redirect()->route('dishes.index')->with('success', 'Dish created!');
+        $dish = new Dish($data);
+        $dish->name = $data['name'];
+        $dish->description = $data['description'];
+        $dish->price = $data['price'];
+        $dish->visible = $data['visible'];
+        $dish->user_id = auth()->id();
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $fileName);
+            $dish->photo = $fileName;
+        }
+
+        $dish->save();
+
+        return redirect()->route('admin.dishes.index')->with('success', 'Dish created!');
     }
 
     /**
@@ -57,7 +76,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        return view('admin.dishes.edit'. compact('dish'));
+        return view('admin.dishes.edit', compact('dish'));
     }
 
     /**
@@ -66,14 +85,29 @@ class DishController extends Controller
     public function update(Request $request, Dish $dish)
     {
         //validazione
-        $validated = $request->validate([
-            'name'=>'required|string|max:255',
-            'photo'=>'required|url',
-            'description'=>'required|string',
-            'price'=>'required|numeric',
-            'visible'=>'required|boolean',
-        ]);
-        $dish->update($validated);
+        {
+            //validazione
+            $validated = $request->validate([
+                'name'=>'required|string|max:255',
+                'photo'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'description'=>'required|string',
+                'price'=>'required|numeric',
+                'visible'=>'required|boolean',
+            ]);
+            $dish->update($validated);
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $fileName = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads'), $fileName);
+                $dish->photo = $fileName;
+            }
+            if ($dish->user_id !== auth()->id()) {
+                return redirect()->route('admin.dishes.index')->with('error', 'You are not authorized to update this dish.');
+            }
+            $dish->user_id = auth()->id();
+            $dish->save();
+            return redirect()->route('admin.dishes.show', $dish)->with('success', 'Dish updated!');
+        }
     }
 
     /**
