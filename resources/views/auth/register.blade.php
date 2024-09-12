@@ -18,7 +18,7 @@
                         </div>
                     @endif
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -74,8 +74,8 @@
                         <div class="row mb-3">
                             <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('Piva') }}</label>
 
-                            <div class="col-md-8">
-                                <input id="piva" type="number" class="form-control  border border-dark" name="piva" required autocomplete="piva">
+                            <div class="col-md-6">
+                                <input id="piva" type="number" class="form-control" name="piva" required autocomplete="piva" value="{{ old('piva') }}">
                             </div>
                         </div>
 
