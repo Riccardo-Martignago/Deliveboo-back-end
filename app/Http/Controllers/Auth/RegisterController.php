@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Typology;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -32,7 +33,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'photo' => ['required', 'string', 'max:2048'],
+            'photo' => ['required', 'image', 'max:2048', 'mimes:jpeg,jpg,png,gif'],
             'piva' => ['required', 'numeric', 'digits:11', 'unique:users'],
             'adress' => ['required', 'string', 'max:255'],
             'typology_id' => 'required|array',
@@ -40,7 +41,7 @@ class RegisterController extends Controller
         ],
         [
             'photo.required' => "The photo field is required.",
-            'photo.string' => "The file must be a string.",
+            'photo.image' => "The file must be an image.",
             'photo.max' => "The image cannot exceed 2048 characters.",
 
             'piva.required' => "The VAT number field is required.",
@@ -64,22 +65,27 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
-        // Validazione dei dati
-        $this->validator($data)->validate();
+{
+    $this->validator($data)->validate();
 
-        // Creazione dell'utente
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'photo' => $data['photo'],
-            'piva' => $data['piva'],
-            'adress' => $data['adress'],
-        ]);
+    $request = app('request');
+    $fileName = null;
 
-        $user->typologies()->sync($data['typology_id']);
-
-        return $user;
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        $fileName = $request->file('photo')->store('uploads', 'public');
     }
+
+    $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'photo' => $fileName,
+        'piva' => $data['piva'],
+        'adress' => $data['adress'],
+    ]);
+
+    $user->typologies()->sync($data['typology_id']);
+
+    return $user;
+}
 }

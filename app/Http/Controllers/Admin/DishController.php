@@ -56,7 +56,7 @@ class DishController extends Controller
             $fileName = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads'), $fileName);
             $dish->photo = $fileName;
-           }
+        }
 
         $dish->save();
 
