@@ -4,37 +4,18 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Typology;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
     protected $redirectTo = '/home';
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -52,9 +33,31 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'photo' => ['required', 'image', 'max:2048', 'mimes:jpeg,jpg,png,gif'],
+            'piva' => ['required', 'numeric', 'digits:11', 'unique:users'],
+            'adress' => ['required', 'string', 'max:255'],
+            'typology_id' => 'required|array',
+            'typology_id.*' => 'exists:typologies,id',
+        ],
+        [
+            'photo.required' => "The photo field is required.",
+            'photo.image' => "The file must be an image.",
+            'photo.max' => "The image cannot exceed 2048 characters.",
+
+            'piva.required' => "The VAT number field is required.",
+            'piva.numeric' => "The VAT number must be a number.",
+            'piva.digits' => "The VAT number must be 11 digits.",
+            'piva.unique' => "The VAT number entered is already registered.",
+
+            'adress.required' => "The address field is required.",
+            'adress.string' => "The address must be a string.",
+            'adress.max' => "The address cannot exceed 255 characters.",
         ]);
     }
-
+    public function showRegistrationForm(){
+        $typologies = Typology::all();
+        return view('auth.register', compact('typologies'));
+    }
     /**
      * Create a new user instance after a valid registration.
      *
@@ -62,11 +65,27 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+{
+    $this->validator($data)->validate();
+
+    $request = app('request');
+    $fileName = null;
+
+    if ($request->hasFile('photo') && $request->file('photo')->isValid()) {
+        $fileName = $request->file('photo')->store('uploads', 'public');
     }
+
+    $user = User::create([
+        'name' => $data['name'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'photo' => $fileName,
+        'piva' => $data['piva'],
+        'adress' => $data['adress'],
+    ]);
+
+    $user->typologies()->sync($data['typology_id']);
+
+    return $user;
+}
 }

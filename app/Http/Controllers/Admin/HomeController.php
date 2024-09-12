@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\User;
 class HomeController extends Controller{
@@ -10,10 +12,10 @@ class HomeController extends Controller{
     protected $validationRules = [
         'name' => 'required|string|max:255',
         'email' => 'required|email|unique:users,email|max:255',
-        'password' => 'required|string|min:8|confirmed',
-        'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'password' => 'required|string|min:8',
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'piva' => 'required|numeric|digits:11|unique:users,piva',
-        'alimentazione' => 'required|string|max:255',
+        // 'alimentazione' => 'required|string|max:255',
         'adress' => 'required|string|max:255',
     ];
 
@@ -30,11 +32,10 @@ class HomeController extends Controller{
         'password.required' => "Il campo password è obbligatorio.",
         'password.string' => "La password deve essere una stringa.",
         'password.min' => "La password deve contenere almeno 8 caratteri.",
-        'password.confirmed' => "Le password non coincidono.",
 
         'photo.required' => "Il campo foto è obbligatorio.",
-        'photo.image' => "Il file deve essere un'immagine.",
-        'photo.mimes' => "L'immagine deve essere di tipo jpeg, png, jpg, gif o svg.",
+        'photo.string' => "Il file caricato deve essere un'immagine.",
+        'photo.mimes' => "L'immagine deve essere in formato: jpeg, png, jpg, gif.",
         'photo.max' => "L'immagine non può superare i 2048 KB.",
 
         'piva.required' => "Il campo Partita IVA è obbligatorio.",
@@ -42,9 +43,9 @@ class HomeController extends Controller{
         'piva.digits' => "La Partita IVA deve essere composta da 11 cifre.",
         'piva.unique' => "La Partita IVA inserita è già registrata.",
 
-        'alimentazione.required' => "Il campo alimentazione è obbligatorio.",
-        'alimentazione.string' => "Il campo alimentazione deve essere una stringa.",
-        'alimentazione.max' => "Il campo alimentazione non può superare i 255 caratteri.",
+        // 'alimentazione.required' => "Il campo alimentazione è obbligatorio.",
+        // 'alimentazione.string' => "Il campo alimentazione deve essere una stringa.",
+        // 'alimentazione.max' => "Il campo alimentazione non può superare i 255 caratteri.",
 
         'adress.required' => "Il campo indirizzo è obbligatorio.",
         'adress.string' => "L'indirizzo deve essere una stringa.",
@@ -55,13 +56,17 @@ class HomeController extends Controller{
     {
         //
         $users = User::all();
+
         return view('admin.user.index',compact('users'));
     }
 
-    public function show(User $users)
+    public function show(User $user ,Order $order)
     {
-        //
-        return view('admin.user.show', compact('users'));
+                // Verifica se l'utente autenticato è lo stesso che si sta tentando di visualizzare
+                if (Auth::id() !== $user->id) {
+                    abort(403, 'La pagina a cui stai tentando di accedere è inesistente.');
+                }
+        return view('admin.user.show', compact('user','order'));
     }
 
     public function create()
@@ -77,15 +82,19 @@ class HomeController extends Controller{
         $newUser->name = $data['name'];
         $newUser->email = $data['email'];
         $newUser->password = $data['password'];
-        $newUser->photo = $data['photo'];
         $newUser->piva = $data['piva'];
-        $newUser->alimentazione = $data['alimentazione'];
+        // $newUser->alimentazione = $data['alimentazione'];
         $newUser->adress = $data['adress'];
+
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $fileName);
+            $newUser->photo = $fileName;
+        }
 
         $newUser->save();
 
-        return redirect()->route('admin.user.show',$newUser);
+        return redirect()->route('pages.show',$newUser);
     }
 }
-
-

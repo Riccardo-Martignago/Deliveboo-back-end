@@ -2,11 +2,9 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\DishController;
-
-
+use App\Http\Controllers\Admin\TypologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,31 +23,26 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
-
-Route::get('/restourant', [AdminHomeController::class,'index'])->name('pages.index');
-Route::get('/show', [AdminHomeController::class,'show'])->name('pages.show');
-
-Route::get('/create', [AdminHomeController::class,'create'])->name('pages.create');
-Route::post('/restourant', [AdminHomeController::class, 'store'])->name('pages.store');
+// Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
 Route::middleware('auth')->name('admin.')->prefix('admin/')->group(function(){
         //Rotte protette
     // Route::get('secret-home', [AdminHomeController::class, 'index'])->name('home');
-
+    Route::resource('user', AdminHomeController::class);
     Route::resource('orders', OrderController::class);
+    Route::resource('dishes', DishController::class);
+    Route::resource('/show', DishController::class);
+    Route::resource('/create', DishController::class);
+    Route::resource('typologies', TypologyController::class);
 
     // Route::resource('/show',AdminHomeController::class);
 
-Route::resource('orders', OrderController::class);
     }
 );
-
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 
 
