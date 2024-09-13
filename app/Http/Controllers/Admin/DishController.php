@@ -85,7 +85,9 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-
+        if ($dish->user_id !== auth()->id()){
+            return redirect()->route('admin.dishes.index')->with('error', 'you are not authorized to edit this dish.');
+        }
         return view('admin.dishes.edit', compact('dish'));
     }
 
@@ -94,8 +96,8 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
-        if ($dish->user_id !== auth()->id()) {
-            return redirect()->route('admin.dishes.index')->with('error', 'You are not authorized to delete this dish.');
+        if ($dish->user_id !==auth()->id()){
+            return redirect()->route('admin.dishes.index')->with('error', 'you are not authorized to update this dish.');
         }
         //validazione
         {
