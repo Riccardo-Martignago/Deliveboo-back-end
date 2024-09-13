@@ -13,7 +13,7 @@
             <div class="form-group">
 
                 <label for="Photo">Photo</label>
-                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
+                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}" required>
 
             </div>
 

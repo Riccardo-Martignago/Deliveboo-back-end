@@ -17,7 +17,7 @@
             <div class="form-group">
 
                 <label for="Photo">Photo</label>
-                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}">
+                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" placeholder="Photo" aria-label="Photo" id="photo" name="photo" value="{{ old('photo') }}" required>
             </div>
 
             <div class="form-group">
@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="price">Price (€)</label>
-                <input type="number" name="price" id="price" class="form-control" step="0.01" value="{{ old('price', $dish->price) }}" required>
+                <input type="number" name="price" id="price" class="form-control" step="0.01" min="0" value="{{ old('price') }}" required>
             </div>
 
             <div class="form-group">
