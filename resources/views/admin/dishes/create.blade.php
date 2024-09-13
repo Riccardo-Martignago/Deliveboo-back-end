@@ -3,6 +3,15 @@
 <div class="row justify-content-center">
     <h1 class=" text-center mb-3">Create a New Dish</h1>
     <div class="col-6">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <form  action="{{ route('admin.dishes.store') }}" method="POST"  enctype="multipart/form-data">
             @csrf
             <div class="form-group">
