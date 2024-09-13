@@ -32,7 +32,6 @@ class DishController extends Controller
     ];
     public function index()
     {
-
         $dishes = Dish::where('user_id', auth()->id())->get();
         return view('admin.dishes.index', compact('dishes'));
     }
@@ -86,6 +85,7 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+
         return view('admin.dishes.edit', compact('dish'));
     }
 
@@ -94,6 +94,9 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
+        if ($dish->user_id !== auth()->id()) {
+            return redirect()->route('admin.dishes.index')->with('error', 'You are not authorized to delete this dish.');
+        }
         //validazione
         {
             //validazione
@@ -125,6 +128,9 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        if ($dish->user_id !== auth()->id()) {
+            return redirect()->route('admin.dishes.index')->with('error', 'You are not authorized to delete this dish.');
+        }
         $dish->delete();
         return redirect()->route('admin.dishes.index')->with('success', 'Dish deleted!');
     }
