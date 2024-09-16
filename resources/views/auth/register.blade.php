@@ -18,7 +18,7 @@
                         </div>
                     @endif
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
+                    <form id="registerForm" method="POST" enctype="multipart/form-data" action="{{ route('register') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -75,7 +75,17 @@
                             <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('Piva') }}</label>
 
                             <div class="col-md-6">
-                                <input id="piva" type="number" class="form-control" name="piva" required autocomplete="piva" value="{{ old('piva') }}">
+                                <input id="piva" type="number" class="form-control" name="piva" min="0" required autocomplete="piva" value="{{ old('piva') }}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('Piva') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="piva" type="text" class="form-control" name="piva" min="0" required autocomplete="piva" value="{{ old('piva') }}">
+                                <span class="invalid-feedback" id="piva-error" style="display:none;" role="alert">
+                                    <strong>La Partita IVA deve essere esattamente di 11 cifre.</strong>
+                                </span>
                             </div>
                         </div>
 
