@@ -20,7 +20,7 @@ public function run(): void{
     $users[3]->typologies()->attach($typologies[3]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[4]->typologies()->attach($typologies[5]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[5]->typologies()->attach($typologies[6]->id, ['created_at' => $now, 'updated_at' => $now]);
-    $users[6]->typologies()->attach($typologies[10]->id, ['created_at' => $now, 'updated_at' => $now]);
+    $users[6]->typologies()->attach($typologies[5]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[7]->typologies()->attach($typologies[2]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[8]->typologies()->attach($typologies[8]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[9]->typologies()->attach($typologies[9]->id, ['created_at' => $now, 'updated_at' => $now]);
