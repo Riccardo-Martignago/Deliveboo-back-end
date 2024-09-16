@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -30,5 +31,24 @@ class HomeController extends Controller
         $user = User::paginate(6);
 
         return response()->json($user);
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            $token = $user->createToken('authToken')->plainTextToken;
+
+            return response()->json([
+                'user' => $user,
+                'token' => $token,
+            ], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
     }
 }
