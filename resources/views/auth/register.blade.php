@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="adress" class="col-md-3 col-form-label fw-bold">{{ __('Adress') }}</label>
+                            <label for="adress" class="col-md-3 col-form-label fw-bold">{{ __('Address') }}</label>
 
                             <div class="col-md-8">
                                 <input id="adress" type="text" class="form-control  border border-dark" name="adress" value="{{ old('adress') }}" required autocomplete="adress" autofocus>
@@ -147,7 +147,7 @@ function validateName() {
     const nameError = document.getElementById('nameError');
     const regex = /^[a-zA-Z\s]+$/;
     if (!regex.test(name)) {
-        nameError.textContent = 'Il nome non deve contenere numeri o caratteri speciali.';
+        nameError.textContent = 'Name must not contain numbers or special characters.';
     } else {
         nameError.textContent = '';
     }
@@ -158,7 +158,7 @@ function validateEmail() {
     const emailError = document.getElementById('emailError');
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!regex.test(email)) {
-        emailError.textContent = 'Inserisci un indirizzo email valido.';
+        emailError.textContent = 'Please enter a valid email address.';
     } else {
         emailError.textContent = '';
     }
@@ -168,7 +168,7 @@ function validatePassword() {
     const password = document.getElementById('password').value;
     const passwordError = document.getElementById('passwordError');
     if (password.length < 8) {
-        passwordError.textContent = 'La password deve essere lunga almeno 8 caratteri.';
+        passwordError.textContent = 'Password must be at least 8 characters long.';
     } else {
         passwordError.textContent = '';
     }
@@ -180,7 +180,7 @@ function validateConfirmPassword() {
     const confirmPassword = document.getElementById('password-confirm').value;
     const confirmPasswordError = document.getElementById('confirmPasswordError');
     if (password !== confirmPassword) {
-        confirmPasswordError.textContent = 'Le password non coincidono.';
+        confirmPasswordError.textContent = "Passwords don't match.";
     } else {
         confirmPasswordError.textContent = '';
     }
@@ -189,8 +189,9 @@ function validateConfirmPassword() {
 function validatePiva() {
     const piva = document.getElementById('piva').value;
     const pivaError = document.getElementById('pivaError');
-    if (piva.length !== 11 || isNaN(piva)) {
-        pivaError.textContent = 'La partita IVA deve contenere esattamente 11 cifre.';
+    const regex = /^\d+$/;
+    if (piva.length !== 11 && !regex.test(piva) || isNaN(piva)) {
+        pivaError.textContent = 'VAT number must contain exactly 11 numbers.';
     } else {
         pivaError.textContent = '';
     }

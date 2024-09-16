@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\TypologyController;
+use App\Http\Controllers\Api\DishController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,5 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::get('/user', [HomeController::class, 'index']);
 Route::get('/typologies', [TypologyController::class, 'index']);
+Route::get('/dishes', [DishController::class, 'index']);
 Route::post('/login', action: [HomeController::class, 'login']);
-
