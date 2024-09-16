@@ -11,7 +11,7 @@ class DishController extends Controller
     public function index()
     {
         // Carica tutte le tipologie insieme ai ristoranti associati
-        $dishes = Dish::paginate(6);
+        $dishes = Dish::paginate(20);
 
         return response()->json($dishes);
     }
