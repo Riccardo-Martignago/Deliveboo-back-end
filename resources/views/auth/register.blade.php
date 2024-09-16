@@ -189,8 +189,9 @@ function validateConfirmPassword() {
 function validatePiva() {
     const piva = document.getElementById('piva').value;
     const pivaError = document.getElementById('pivaError');
-    if (piva.length !== 11 || isNaN(piva)) {
-        pivaError.textContent = 'VAT number must contain exactly 11 digits.';
+    const regex = /^\d+$/;
+    if (piva.length !== 11 && !regex.test(piva) || isNaN(piva)) {
+        pivaError.textContent = 'VAT number must contain exactly 11 numbers.';
     } else {
         pivaError.textContent = '';
     }
