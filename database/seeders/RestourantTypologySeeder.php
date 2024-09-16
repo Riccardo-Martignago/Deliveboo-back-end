@@ -28,8 +28,8 @@ public function run(): void{
     $users[11]->typologies()->attach($typologies[2]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[12]->typologies()->attach($typologies[3]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[13]->typologies()->attach($typologies[4]->id, ['created_at' => $now, 'updated_at' => $now]);
-    $users[14]->typologies()->attach($typologies[5]->id, ['created_at' => $now, 'updated_at' => $now]);
-    $users[15]->typologies()->attach($typologies[6]->id, ['created_at' => $now, 'updated_at' => $now]);
+    $users[11]->typologies()->attach($typologies[5]->id, ['created_at' => $now, 'updated_at' => $now]);
+    $users[12]->typologies()->attach($typologies[6]->id, ['created_at' => $now, 'updated_at' => $now]);
     }
 }
 
