@@ -76,7 +76,7 @@
                             <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('Piva') }}</label>
 
                             <div class="col-md-6">
-                                <input id="piva" type="number" class="form-control" name="piva" required autocomplete="piva" value="{{ old('piva') }}">
+                                <input id="piva" type="number" class="form-control" min="0" name="piva" required autocomplete="piva" value="{{ old('piva') }}">
                                 <div id="pivaError" class="text-danger"></div>
                             </div>
                         </div>
