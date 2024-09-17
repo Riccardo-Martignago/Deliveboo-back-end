@@ -32,23 +32,4 @@ class HomeController extends Controller
 
         return response()->json($user);
     }
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('authToken')->plainTextToken;
-
-            return response()->json([
-                'user' => $user,
-                'token' => $token,
-            ], 200);
-        } else {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-    }
 }

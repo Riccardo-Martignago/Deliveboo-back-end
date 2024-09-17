@@ -25,4 +25,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/user', [HomeController::class, 'index']);
 Route::get('/typologies', [TypologyController::class, 'index']);
 Route::get('/dishes', [DishController::class, 'index']);
-Route::post('/login', action: [HomeController::class, 'login']);
