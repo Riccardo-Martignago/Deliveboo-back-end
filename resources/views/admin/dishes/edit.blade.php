@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="photo">Photo</label>
-                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" id="photo" name="photo" required>
+                <input class="form-control form-control-sm mb-2" type="file" accept="image/*" id="photo" name="photo">
                 <div id="photoError" class="text-danger"></div>
             </div>
 
@@ -39,7 +39,7 @@
 
             <div class="form-group">
                 <label for="price">Price (€)</label>
-                <input type="number" name="price" id="price" class="form-control" step="0.01" min="0" value="{{ old('price') }}" required>
+                <input type="number" name="price" id="price" class="form-control" step="0.01" min="0" value="{{ old('price', $dish->price) }}" required>
                 <div id="priceError" class="text-danger"></div>
             </div>
 
@@ -62,7 +62,6 @@
 @section('scripts')
 <script>
 document.getElementById('name').addEventListener('input', validateName);
-document.getElementById('photo').addEventListener('input', validatePhoto);
 document.getElementById('description').addEventListener('input', validateDescription);
 document.getElementById('price').addEventListener('input', validatePrice);
 document.getElementById('visible').addEventListener('change', validateVisible);
@@ -77,15 +76,6 @@ function validateName() {
     }
 }
 
-function validatePhoto() {
-    const photo = document.getElementById('photo').files[0];
-    const photoError = document.getElementById('photoError');
-    if (!photo) {
-        photoError.textContent = 'Photo is required.';
-    } else {
-        photoError.textContent = '';
-    }
-}
 
 function validateDescription() {
     const description = document.getElementById('description').value;
