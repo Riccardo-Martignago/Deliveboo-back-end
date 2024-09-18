@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\TypologyController;
 use App\Http\Controllers\Api\DishController;
+use App\Http\Controllers\PaymentController;
+use Braintree\Gateway;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/user', [HomeController::class, 'index']);
 Route::get('/typologies', [TypologyController::class, 'index']);
 Route::get('/dishes', [DishController::class, 'index']);
-Route::post('/login', action: [HomeController::class, 'login']);
+Route::get('/payment/token', [PaymentController::class, 'generateToken']);
+Route::post('/payment/process', [PaymentController::class, 'processPayment']);
+Route::get('/api/payment/token', function () {
+    $gateway = new Gateway([
+        'environment' => 'sandbox',
+        'merchantId' => '44nxng54m6y3sxbp',
+        'publicKey' => 'dc5b846wsbxy2tzj',
+        'privateKey' => '7a327555d8938842b51b0dc3ad2cf4ce'
+    ]);
+
+    return response()->json([
+        'token' => $gateway->clientToken()->generate()
+    ]);
+});
