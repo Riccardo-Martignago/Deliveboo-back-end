@@ -17,25 +17,25 @@ class TypologySeeder extends Seeder
             'name' => 'Brunch Café'
         ],
         [
-            'name' => 'Gelateria'
+            'name' => 'Ice cream shop'
         ],
         [
             'name' => 'Pizzeria'
         ],
         [
-            'name' => 'Ristorante Francese'
+            'name' => 'French restaurant'
         ],
         [
-            'name' => 'Ristorante Giapponese'
+            'name' => 'Japanese restaurant'
         ],
         [
-            'name' => 'Ristorante Greco'
+            'name' => 'Greek restaurant'
         ],
         [
-            'name' => 'Ristorante Italiano'
+            'name' => 'Italian restaurant'
         ],
         [
-            'name' => 'Ristorante Thai'
+            'name' => 'Thai restaurant'
         ],
         [
             'name' => 'Steakhouse'
