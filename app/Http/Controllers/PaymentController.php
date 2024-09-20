@@ -31,10 +31,9 @@ class PaymentController extends Controller
     // Metodo per processare il pagamento
     public function processPayment(Request $request)
     {
-        $request->validate([
-            'paymentMethodNonce' => 'required|string',
-            'amount' => 'required|numeric',
-            'restaurantId' => 'required|integer',
+        $validatedData = $request->validate([
+            'user_id' => 'required|integer',
+            'total_price' => 'required|numeric',
             'dishes' => 'required|array',
             'dishes.*.dish_id' => 'required|integer',
             'dishes.*.quantity' => 'required|integer',
@@ -65,11 +64,9 @@ class PaymentController extends Controller
         // Controlla il risultato della transazione
         if ($result->success) {
             // Salva l'ordine nel database
-            Order_Dish::create([
-                'restaurant_id' => $restaurantId,
-                'total_price' => $amount,
-                 'dishes' => json_encode($dishes) // O crea una relazione nella tabella 'order_dishes'
-            ]);
+            $order = Order::create($validatedData){
+                ''
+            }
 
             return response()->json(['success' => true, 'message' => 'Payment completed successfully.']);
         } else {
