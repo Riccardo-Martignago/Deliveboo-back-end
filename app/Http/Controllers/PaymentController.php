@@ -58,17 +58,17 @@ class PaymentController extends Controller
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'options' => [
-                'submitForSettlement' => true
+            'submitForSettlement' => true
             ]
         ]);
 
         // Controlla il risultato della transazione
         if ($result->success) {
             // Salva l'ordine nel database
-            Order::create([
+            Order_Dish::create([
                 'restaurant_id' => $restaurantId,
                 'total_price' => $amount,
-                'dishes' => json_encode($dishes) // O crea una relazione nella tabella 'order_dishes'
+                 'dishes' => json_encode($dishes) // O crea una relazione nella tabella 'order_dishes'
             ]);
 
             return response()->json(['success' => true, 'message' => 'Payment completed successfully.']);
