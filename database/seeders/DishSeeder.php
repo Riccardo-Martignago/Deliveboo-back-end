@@ -21,7 +21,7 @@ class DishSeeder extends Seeder
 
         $dishes = [
             [
-                'user_id' =>$userIds[0],
+                'user_id' =>$userIds[9],
                 'name' => 'Spaghetti Carbonara',
                 'photo' => 'spaghetti_alla_carbonara.jpg',
                 'description' => 'Classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.',
@@ -29,7 +29,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' =>  $userIds[1],
+                'user_id' =>  $userIds[0],
                 'name' => 'Margherita Pizza',
                 'photo' => 'pizza.jpg',
                 'description' => 'Traditional Italian pizza with tomatoes, mozzarella cheese, fresh basil, salt, and extra-virgin olive oil.',
@@ -45,7 +45,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' =>  $userIds[3],
+                'user_id' =>  $userIds[8],
                 'name' => 'Beef Tacos',
                 'photo' => 'beef tacos.jpg',
                 'description' => 'Tasty beef tacos with fresh salsa, lettuce, and cheese.',
@@ -53,7 +53,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[4],
+                'user_id' => $userIds[1],
                 'name' => 'Grilled Salmon',
                 'photo' => 'grilled salmon.jpg',
                 'description' => 'Grilled salmon fillet served with lemon butter sauce and vegetables.',
@@ -61,7 +61,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[0],
+                'user_id' => $userIds[4],
                 'name' => 'Chicken Parmesan',
                 'photo' => 'chicken parmesan.jpg',
                 'description' => 'Breaded chicken breast topped with marinara sauce and melted cheese.',
@@ -69,7 +69,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[1],
+                'user_id' => $userIds[7],
                 'name' => 'Sushi Platter',
                 'photo' => 'sushi platter.jpg',
                 'description' => 'Assorted sushi rolls with fresh fish, rice, and seaweed.',
@@ -77,7 +77,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' =>  $userIds[2],
+                'user_id' =>  $userIds[7],
                 'name' => 'Ramen Noodles',
                 'photo' => 'ramen noodles.jpg',
                 'description' => 'Japanese ramen noodles in a savory broth with pork, egg, and vegetables.',
@@ -93,7 +93,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' =>  $userIds[4],
+                'user_id' =>  $userIds[8],
                 'name' => 'Cheeseburger',
                 'photo' => 'Cheeseburger.jpg',
                 'description' => 'Juicy beef burger with cheddar cheese, lettuce, tomato, and pickles.',
@@ -101,7 +101,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[0],
+                'user_id' => $userIds[13],
                 'name' => 'Pad Thai',
                 'photo' => 'Pad Thai.jpg',
                 'description' => 'Traditional Thai noodles stir-fried with shrimp, peanuts, and bean sprouts.',
@@ -109,7 +109,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[2],
+                'user_id' => $userIds[13],
                 'name' => 'Chicken Tikka Masala',
                 'photo' => 'Chicken Tikka Masala.jpg',
                 'description' => 'Grilled chicken cooked in a creamy tomato sauce with Indian spices.',
@@ -125,7 +125,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[3],
+                'user_id' => $userIds[12],
                 'name' => 'Lamb Gyro',
                 'photo' => 'Lamb Gyro.jpg',
                 'description' => 'Grilled lamb served in pita bread with tzatziki sauce, tomatoes, and onions.',
@@ -133,7 +133,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[4],
+                'user_id' => $userIds[8],
                 'name' => 'BBQ Ribs',
                 'photo' => 'BBQ Ribs.jpg',
                 'description' => 'Tender pork ribs slathered in barbecue sauce, served with coleslaw and fries.',
@@ -141,7 +141,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[8],
+                'user_id' => $userIds[2],
                 'name' => 'Falafel Wrap',
                 'photo' => 'Falafel Wrap.jpg',
                 'description' => 'Crispy falafel balls wrapped in pita bread with hummus, lettuce, and tomatoes.',
@@ -149,7 +149,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' =>$userIds[7],
+                'user_id' =>$userIds[4],
                 'name' => 'Peking Duck',
                 'photo' => 'Peking Duck.jpg',
                 'description' => 'Roasted duck served with pancakes, cucumber, and hoisin sauce.',
@@ -157,7 +157,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[6],
+                'user_id' => $userIds[3],
                 'name' => 'Shrimp Scampi',
                 'photo' => 'Shrimp Scampi.jpg',
                 'description' => 'Shrimp cooked in garlic butter sauce, served over linguine pasta.',
@@ -165,7 +165,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[1],
+                'user_id' => $userIds[11],
                 'name' => 'Steak Frites',
                 'photo' => 'Steak Frites.jpg',
                 'description' => 'Grilled steak served with crispy French fries and herb butter.',
@@ -173,7 +173,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[3],
+                'user_id' => $userIds[6],
                 'name' => 'Margarita',
                 'photo' => 'Margarita.jpg',
                 'description' => 'Classic cocktail made with tequila, lime juice, and triple sec.',
@@ -181,7 +181,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[11],
+                'user_id' => $userIds[5],
                 'name' => 'Eggplant Parmesan',
                 'photo' => 'eggplant_parmesan.jpg',
                 'description' => 'Breaded eggplant slices baked with marinara sauce and melted cheese.',
@@ -197,7 +197,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[10],
+                'user_id' => $userIds[12],
                 'name' => 'Greek Salad',
                 'photo' => 'greek_salad.jpg',
                 'description' => 'A refreshing salad with cucumbers, tomatoes, olives, feta cheese, and red onions.',
@@ -205,7 +205,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[9],
+                'user_id' => $userIds[3],
                 'name' => 'Chili Con Carne',
                 'photo' => 'chili_con_carne.jpg',
                 'description' => 'Hearty beef chili with beans, tomatoes, and spices.',
@@ -213,7 +213,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[2],
+                'user_id' => $userIds[9],
                 'name' => 'Mushroom Risotto',
                 'photo' => 'mushroom_risotto.jpg',
                 'description' => 'Creamy risotto cooked with mushrooms and Parmesan cheese.',
@@ -221,7 +221,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[3],
+                'user_id' => $userIds[11],
                 'name' => 'Pork Schnitzel',
                 'photo' => 'pork_schnitzel.jpg',
                 'description' => 'Breaded and fried pork cutlet served with lemon wedges and a side of potatoes.',
@@ -229,7 +229,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[4],
+                'user_id' => $userIds[13],
                 'name' => 'Tandoori Chicken',
                 'photo' => 'tandoori_chicken.jpg',
                 'description' => 'Chicken marinated in yogurt and spices, cooked in a tandoor oven.',
@@ -237,7 +237,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[8],
+                'user_id' => $userIds[13],
                 'name' => 'Vietnamese Pho',
                 'photo' => 'vietnamese_pho.jpg',
                 'description' => 'Fragrant noodle soup with herbs, beef, and a flavorful broth.',
@@ -245,7 +245,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[5],
+                'user_id' => $userIds[6],
                 'name' => 'Buttermilk Pancakes',
                 'photo' => 'buttermilk_pancakes.jpg',
                 'description' => 'Fluffy pancakes made with buttermilk, served with maple syrup and butter.',
@@ -253,7 +253,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[6],
+                'user_id' => $userIds[5],
                 'name' => 'Spinach Artichoke Dip',
                 'photo' => 'spinach_artichoke_dip.jpg',
                 'description' => 'Creamy dip made with spinach and artichokes, served with tortilla chips.',
@@ -261,7 +261,7 @@ class DishSeeder extends Seeder
                 'visible' => true,
             ],
             [
-                'user_id' => $userIds[7],
+                'user_id' => $userIds[12],
                 'name' => 'Lentil Soup',
                 'photo' => 'lentil_soup.jpg',
                 'description' => 'Hearty soup made with lentils, vegetables, and spices.',
