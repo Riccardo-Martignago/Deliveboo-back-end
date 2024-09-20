@@ -14,7 +14,7 @@ public function run(): void{
     $typologies = Typology::all();
     $now = now();
 
-    $users[0]->typologies()->syncWithoutDetaching($typologies[7]->id, ['created_at' => $now, 'updated_at' => $now]);
+    $users[0]->typologies()->syncWithoutDetaching($typologies[3]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[1]->typologies()->syncWithoutDetaching($typologies[1]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[2]->typologies()->syncWithoutDetaching($typologies[4]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[3]->typologies()->syncWithoutDetaching($typologies[3]->id, ['created_at' => $now, 'updated_at' => $now]);
@@ -31,7 +31,7 @@ public function run(): void{
     $users[11]->typologies()->syncWithoutDetaching($typologies[5]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[12]->typologies()->syncWithoutDetaching($typologies[6]->id, ['created_at' => $now, 'updated_at' => $now]);
 
-    $users[0]->typologies()->syncWithoutDetaching($typologies[4]->id, ['created_at' => $now, 'updated_at' => $now]);
+    $users[0]->typologies()->syncWithoutDetaching($typologies[2]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[1]->typologies()->syncWithoutDetaching($typologies[2]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[2]->typologies()->syncWithoutDetaching($typologies[1]->id, ['created_at' => $now, 'updated_at' => $now]);
     $users[3]->typologies()->syncWithoutDetaching($typologies[1]->id, ['created_at' => $now, 'updated_at' => $now]);
