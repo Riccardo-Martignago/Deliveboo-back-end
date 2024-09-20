@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Braintree\Gateway;
+use App\Models\Order;
+use App\Models\Order_Dish;
 
 class PaymentController extends Controller
 {
@@ -29,11 +31,30 @@ class PaymentController extends Controller
     // Metodo per processare il pagamento
     public function processPayment(Request $request)
     {
-        $amount = $request->amount; // Totale da pagare
-        $nonce = $request->paymentMethodNonce; // Nonce generato dal client
+        $request->validate([
+            'paymentMethodNonce' => 'required|string',
+            'amount' => 'required|numeric',
+            'restaurantId' => 'required|integer',
+            'dishes' => 'required|array',
+            'dishes.*.dish_id' => 'required|integer',
+            'dishes.*.quantity' => 'required|integer',
+        ]);
 
-        // Effettuare la transazione
-        $result = $this->gateway->transaction()->sale([
+        $nonce = $request->input('paymentMethodNonce');
+        $amount = $request->input('amount');
+        $restaurantId = $request->input('restaurantId');
+        $dishes = $request->input('dishes');
+
+        // Configura il gateway Braintree
+        $gateway = new Gateway([
+            'environment' => 'sandbox',
+            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+        ]);
+
+        // Esegui la transazione
+        $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'options' => [
@@ -41,10 +62,18 @@ class PaymentController extends Controller
             ]
         ]);
 
+        // Controlla il risultato della transazione
         if ($result->success) {
-            return response()->json(['success' => true, 'transaction_id' => $result->transaction->id]);
+            // Salva l'ordine nel database
+            Order::create([
+                'restaurant_id' => $restaurantId,
+                'total_price' => $amount,
+                'dishes' => json_encode($dishes) // O crea una relazione nella tabella 'order_dishes'
+            ]);
+
+            return response()->json(['success' => true, 'message' => 'Payment completed successfully.']);
         } else {
-            return response()->json(['success' => false, 'message' => $result->message]);
+            return response()->json(['success' => false, 'message' => $result->message], 500);
         }
     }
 }
