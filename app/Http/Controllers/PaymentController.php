@@ -32,11 +32,16 @@ class PaymentController extends Controller
     public function processPayment(Request $request)
     {
         $validatedData = $request->validate([
-            'user_id' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
+            'email' => 'required|email',
+            'phone' => 'required|string',  // Cambiato da numeric a string
+            'adress' => 'required|string',  // Corretto l'errore di battitura
+            'date' => 'required|date',
             'total_price' => 'required|numeric',
+            'restaurantId' => 'required|integer|exists:restaurants,id',  // Aggiunto per sicurezza
             'dishes' => 'required|array',
-            'dishes.*.dish_id' => 'required|integer',
-            'dishes.*.quantity' => 'required|integer',
+            'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
+            'dishes.*.quantity' => 'required|integer|min:1',  // Assicurarsi che ci sia almeno 1 piatto
         ]);
 
         $nonce = $request->input('paymentMethodNonce');
@@ -57,17 +62,29 @@ class PaymentController extends Controller
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
             'options' => [
-            'submitForSettlement' => true
+                'submitForSettlement' => true
             ]
         ]);
 
         // Controlla il risultato della transazione
         if ($result->success) {
             // Salva l'ordine nel database
-            $order = Order::create($validatedData){
-                ''
+            $order = Order::create([
+                'user_id' => $validatedData['user_id'],
+                'email' => $validatedData['email'],
+                'phone' => $validatedData['phone'],
+                'adress' => $validatedData['adress'],
+                'date' => $validatedData['date'],
+                'total_price' => $validatedData['total_price'],
+                'state' => 'pending', // Imposta lo stato iniziale
+            ]);
+            foreach ($validatedData['dishes'] as $dish) {
+                Order_Dish::create([
+                    'order_id' => $order->id,
+                    'dish_id' => $dish['dish_id'],
+                    'quantity' => $dish['quantity'],
+                ]);
             }
-
             return response()->json(['success' => true, 'message' => 'Payment completed successfully.']);
         } else {
             return response()->json(['success' => false, 'message' => $result->message], 500);
