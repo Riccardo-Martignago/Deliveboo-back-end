@@ -11,7 +11,7 @@
                 <p>Date: {{ $order->date }}</td>
                 <p>Total Price: {{ $order->total_price }}</p>
                 <p>State: {{ $order->state }}</p>
-
+                <a href="{{ route('admin.orders.index') }}" class="btn btn-primary mt-3">Return to orders</a>
         </div>
     </div>
 </div>

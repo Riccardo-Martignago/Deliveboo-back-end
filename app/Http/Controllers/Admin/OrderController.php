@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Braintree\Gateway;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -55,7 +55,7 @@ class OrderController extends Controller
             $order->adress = $request->address;
             $order->total_price = $request->totalAmount;
             $order->date = Carbon::now();
-            $order->state = 'completed';
+            $order->state = 'pending';
             $order->save();
 
             return response()->json(['success' => true, 'order_id' => $order->id, 'transaction_id' => $result->transaction->id]);
@@ -92,10 +92,16 @@ class OrderController extends Controller
      * Display the specified resource.
      */
     public function show(Order $order)
-    {
+        {
+            $user = auth()->user();
 
-        return view('admin.orders.show', compact('order'));
-    }
+            // Controlla se l'ordine appartiene all'utente loggato
+            if (Auth::id() !== $user->id) {
+                abort(403, 'La pagina a cui stai tentando di accedere è inesistente.');
+            }
+
+            return view('admin.orders.show', compact('order'));
+        }
 
     /**
      * Show the form for editing the specified resource.
