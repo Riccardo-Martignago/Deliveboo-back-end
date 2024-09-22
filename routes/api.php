@@ -28,6 +28,7 @@ Route::get('/user', [HomeController::class, 'index']);
 Route::get('/typologies', [TypologyController::class, 'index']);
 Route::get('/dishes', [DishController::class, 'index']);
 Route::get('/payment/token', [PaymentController::class, 'generateToken']);
+Route::post('/order', [OrderController::class, 'createOrder']);
 Route::post('/payment/process', [PaymentController::class, 'processPayment']);
 Route::get('/api/payment/token', function () {
     $gateway = new Gateway([
