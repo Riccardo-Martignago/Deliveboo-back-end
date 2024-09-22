@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header fw-bold">{{ __('Registrati su Deliveboo!') }}</div>
+                <div class="card-header fw-bold">{{ __('Register on Deliverboo!') }}</div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('Piva') }}</label>
+                            <label for="piva" class="col-md-3 col-form-label fw-bold">{{ __('VAT') }}</label>
 
                             <div class="col-md-6">
                                 <input id="piva" type="number" class="form-control" min="0" name="piva" required autocomplete="piva" value="{{ old('piva') }}">
@@ -99,7 +99,7 @@
 
                         <div class="row mb-3 d-flex">
                             <label for="typology" class="form-check-label w-25 fw-bold">
-                                Tipologie
+                                Typologies
                             </label>
                             <div required class="d-flex wrap justify-content-start flex-wrap w-75">
                                 @foreach($typologies as $typology)

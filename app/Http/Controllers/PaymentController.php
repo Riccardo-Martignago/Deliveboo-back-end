@@ -31,31 +31,8 @@ class PaymentController extends Controller
     // Metodo per processare il pagamento
     public function processPayment(Request $request)
     {
-        $validatedData = $request->validate([
-            'user_id' => 'required|integer|exists:users,id',
-            'email' => 'required|email',
-            'phone' => 'required|string',  // Cambiato da numeric a string
-            'adress' => 'required|string',  // Corretto l'errore di battitura
-            'date' => 'required|date',
-            'total_price' => 'required|numeric',
-            'restaurantId' => 'required|integer|exists:restaurants,id',  // Aggiunto per sicurezza
-            'dishes' => 'required|array',
-            'dishes.*.dish_id' => 'required|integer|exists:dishes,id',
-            'dishes.*.quantity' => 'required|integer|min:1',  // Assicurarsi che ci sia almeno 1 piatto
-        ]);
-
-        $nonce = $request->input('paymentMethodNonce');
-        $amount = $request->input('amount');
-        $restaurantId = $request->input('restaurantId');
-        $dishes = $request->input('dishes');
-
-        // Configura il gateway Braintree
-        $gateway = new Gateway([
-            'environment' => 'sandbox',
-            'merchantId' => env('BRAINTREE_MERCHANT_ID'),
-            'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
-            'privateKey' => env('BRAINTREE_PRIVATE_KEY')
-        ]);
+        $amount = $request->totalAmount; // Totale da pagare
+        $nonce = $request->paymentMethodNonce; // Nonce generato dal client
 
         // Esegui la transazione
         $result = $gateway->transaction()->sale([
