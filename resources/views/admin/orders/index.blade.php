@@ -18,23 +18,21 @@
                 </thead>
                 <tbody>
                     @foreach ($orders as $order)
-                        <tr>
-                            <td>{{ $order->id }}</td>
-                            <td>{{ $order->user->id }}</td>
-                            <td>{{ $order->email }}</td>
-                            <td>{{ $order->phone }}</td>
-                            <td>{{ $order->adress }}</td>
-                            <td>{{ $order->date }}</td>
-                            <td>{{ $order->total_price }}</td>
-                            <td>{{ $order->state }}</td>
-                            <td>
-                                <a href="{{ route('admin.orders.show', $order)}}" class="btn btn-primary btn-sm"> Show </a>
-                                    @csrf
-
-                                    <input type="submit" class="btn btn-warning btn-sm" value="Delete">
-                                </form>
-                            </td>
-                        </tr>
+                        @if($order->user_id === auth()->user()->id)
+                            <tr>
+                                <td>{{ $order->id }}</td>
+                                <td>{{ $order->user->id }}</td>
+                                <td>{{ $order->email }}</td>
+                                <td>{{ $order->phone }}</td>
+                                <td>{{ $order->adress }}</td>
+                                <td>{{ $order->date }}</td>
+                                <td>{{ $order->total_price }}</td>
+                                <td>{{ $order->state }}</td>
+                                <td>
+                                    <a href="{{ route('admin.orders.show', $order)}}" class="btn btn-primary btn-sm"> Show </a>
+                                </td>
+                            </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
