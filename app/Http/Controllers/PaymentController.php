@@ -29,7 +29,7 @@ class PaymentController extends Controller
     // Metodo per processare il pagamento
     public function processPayment(Request $request)
     {
-        $amount = $request->amount; // Totale da pagare
+        $amount = $request->totalAmount; // Totale da pagare
         $nonce = $request->paymentMethodNonce; // Nonce generato dal client
 
         // Effettuare la transazione
