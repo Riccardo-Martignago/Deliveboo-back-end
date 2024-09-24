@@ -8,8 +8,11 @@ Showing {{ $user->name }}
     <div class="card m-4" style="width: 40rem;">
         <h3 class="card-header">{{ $user->name}}</h3>
         <div class="m-3">
-            <img src="{{ asset('storage/' . $user->photo) }}" class="card-img" alt=" " />
-            <img class="card-img" src="{{ asset('uploads/' . $user->photo) }}" alt=" "/>
+            @if(Str::contains($user->photo, 'uploads'))
+                <img class="card-img" src="{{ asset('storage/' . $user->photo) }}" alt="" />
+            @else
+                <img class="card-img" src="{{ asset('uploads/' . $user->photo) }}" alt="" />
+            @endif
         </div>
         <div class="card-body">
             <br>

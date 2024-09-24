@@ -364,6 +364,14 @@ class DishSeeder extends Seeder
                 'price' => 14.25,
                 'visible' => true,
             ],
+            [
+                'user_id' => $userIds[0],
+                'name' => 'Pizza Tartufo e Pere',
+                'photo' => 'pizza_tartufo_pere.jpg',
+                'description' => 'Una pizza gourmet con crema di tartufo, pere caramellate, gorgonzola, noci tostate e una spolverata di rosmarino.',
+                'price' => 18.50,
+                'visible' => true,
+            ],
         ];
 
         //dopo aver generato l'array associativo, per ogni piatto all'interno dell'array , creo un piatto.
