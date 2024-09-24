@@ -7,7 +7,7 @@
                 <h1>Customer ID: {{ $order->user->id }}</h1>
                 <p>Email: {{ $order->email }}</p>
                 <p>Phone: {{ $order->phone }}</p>
-                <p>Adress: {{ $order->adress }}</p>
+                <p>Address: {{ $order->adress }}</p>
                 <p>Date: {{ $order->date }}</td>
                 <p>Total Price: {{ $order->total_price }}</p>
                 <p>State: {{ $order->state }}</p>
