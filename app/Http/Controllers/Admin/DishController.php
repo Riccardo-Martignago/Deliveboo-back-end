@@ -13,16 +13,25 @@ class DishController extends Controller
         'name'=>'required|string|max:255',
         'photo'=>'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         'description'=>'required|string',
-        'price'=>'required|numeric',
+        'price'=>'required|numeric|max:999999',
         'visible'=>'required|boolean',
         'user_id' =>'required|exists:users,id',
     ];
-    /**
-     * Display a listing of the resource.
-     */
+    protected $validationMessages = [
+        'name.required' => 'Il campo nome è obbligatorio.',
+        'name.string' => 'Il nome deve essere una stringa.',
+        'name.max' => 'Il nome non può superare i 255 caratteri.',
+
+        'price.required' => 'Il campo prezzo è obbligatorio.',
+        'price.numeric' => 'Il prezzo deve essere un numero.',
+        'price.max' => 'Il prezzo non può superare i 999999.',
+
+        'photo.required' => 'Il campo foto è obbligatorio.',
+        'photo.image' => 'Il file deve essere un\'immagine.',
+        'photo.max' => 'L\'immagine non può superare i 2MB.',
+    ];
     public function index()
     {
-
         $dishes = Dish::where('user_id', auth()->id())->get();
         return view('admin.dishes.index', compact('dishes'));
     }
@@ -76,6 +85,9 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
+        if ($dish->user_id !== auth()->id()){
+            return redirect()->route('admin.dishes.index')->with('error', 'you are not authorized to edit this dish.');
+        }
         return view('admin.dishes.edit', compact('dish'));
     }
 
@@ -84,6 +96,9 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
+        if ($dish->user_id !==auth()->id()){
+            return redirect()->route('admin.dishes.index')->with('error', 'you are not authorized to update this dish.');
+        }
         //validazione
         {
             //validazione
@@ -115,6 +130,9 @@ class DishController extends Controller
      */
     public function destroy(Dish $dish)
     {
+        if ($dish->user_id !== auth()->id()) {
+            return redirect()->route('admin.dishes.index')->with('error', 'You are not authorized to delete this dish.');
+        }
         $dish->delete();
         return redirect()->route('admin.dishes.index')->with('success', 'Dish deleted!');
     }
